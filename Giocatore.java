@@ -1,4 +1,6 @@
-package diadia;
+package it.uniroma3.diadia.giocatore;
+
+import it.uniroma3.diadia.attrezzi.Attrezzo;
 
 public class Giocatore {
 	private final int CFU_INIZIALI = 20;
@@ -12,14 +14,20 @@ public class Giocatore {
 	
 	public boolean addAttrezzo(Attrezzo attrezzo) {
 		boolean eseguito = this.borsa.addAttrezzo(attrezzo);
-		this.borsa.addAttrezzo(attrezzo);
-		return eseguito;
+		if (eseguito == true) {
+			this.borsa.addAttrezzo(attrezzo);
+			return true;
+		}		
+		return false;
 	}
 	
 	public boolean removeAttrezzo(String nomeAttrezzo) {
 		Attrezzo rimosso = this.borsa.removeAttrezzo(nomeAttrezzo);
-		this.borsa.removeAttrezzo(nomeAttrezzo);
-		return rimosso != null;
+		if (rimosso != null) {
+			this.borsa.removeAttrezzo(nomeAttrezzo);
+			return true;
+		}
+		return false;
 	}
 	
 	public void setCfu(int cfu) {
@@ -28,5 +36,9 @@ public class Giocatore {
 	
 	public int getCfu() {
 		return this.cfu;
+	}
+	
+	public Borsa getBorsa() {
+		return this.borsa;
 	}
 }

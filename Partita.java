@@ -1,6 +1,8 @@
-package diadia;
+package it.uniroma3.diadia;
 
-
+import it.uniroma3.diadia.ambienti.Labirinto;
+import it.uniroma3.diadia.ambienti.Stanza;
+import it.uniroma3.diadia.giocatore.Giocatore;
 
 /**
  * Questa classe modella una partita del gioco
@@ -12,7 +14,6 @@ package diadia;
 
 public class Partita {
 	private Stanza stanzaCorrente;
-	private Stanza stanzaVincente;
 	private boolean finita;
 	private Labirinto labirinto;
 	private Giocatore player;
@@ -23,15 +24,6 @@ public class Partita {
 		this.finita = false;
 
 		setStanzaCorrente(labirinto.getEntrata());
-		setStanzaVincente(labirinto.getUscita());
-	}
-	
-	public void setStanzaVincente(Stanza stanzaVincente) {
-		this.stanzaVincente = stanzaVincente;
-	}
-
-	public Stanza getStanzaVincente() {
-		return stanzaVincente;
 	}
 
 	public void setStanzaCorrente(Stanza stanzaCorrente) {
@@ -47,7 +39,7 @@ public class Partita {
 	 * @return vero se partita vinta
 	 */
 	public boolean vinta() {
-		return this.getStanzaCorrente() == this.getStanzaVincente();
+		return this.getStanzaCorrente() == this.labirinto.getUscita();
 	}
 
 	/**
@@ -68,5 +60,9 @@ public class Partita {
 	
 	public Giocatore getPlayer() {
 		return this.player;
+	}
+	
+	public Labirinto getLabirinto() {
+		return this.labirinto;
 	}
 }

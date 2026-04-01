@@ -1,8 +1,9 @@
-package test;
-import diadia.Stanza;
-import diadia.Attrezzo;
-
+package it.uniroma3.diadia.test;
 import org.junit.jupiter.api.*;
+
+import it.uniroma3.diadia.ambienti.Stanza;
+import it.uniroma3.diadia.attrezzi.Attrezzo;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class StanzaTest {
@@ -54,11 +55,23 @@ class StanzaTest {
 	public void testRemoveAttrezzo() {
 		prova1.addAttrezzo(martello);
 		
-		assertTrue(prova1.removeAttrezzo("Martello"));
+		assertEquals(martello.getNome(), prova1.removeAttrezzo("Martello").getNome());
 		
-		assertFalse(prova1.removeAttrezzo("Cacciavite"));
+		assertNull(prova1.removeAttrezzo("Cacciavite"));
 		
 		prova1.removeAttrezzo("Martello");
 		assertFalse(prova1.hasAttrezzo("Martello"));
+	}
+	
+	@Test
+	public void testHasAttrezzo() {
+		prova1.addAttrezzo(martello);
+		assertTrue(prova1.hasAttrezzo("Martello"));
+		
+		assertFalse(prova1.hasAttrezzo("Cacciavite"));
+		
+		prova1.addAttrezzo(cacciavite);
+		assertTrue(prova1.hasAttrezzo("Cacciavite"));
+		
 	}
 }
